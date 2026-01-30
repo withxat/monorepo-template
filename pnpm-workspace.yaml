@@ -1,0 +1,11 @@
+packages:
+  - packages/*
+  - apps/*
+
+catalogs:
+  devtool:
+    "@withxat/eslint-config": ^1.0.3
+    "@withxat/tsconfig": ^1.0.0
+    eslint: ^9.39.2
+    jiti: ^2.6.1
+    typescript: ^5.9.3

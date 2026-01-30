@@ -1,0 +1,15 @@
+{
+	"name": "monorepo-template",
+	"version": "1.0.0",
+	"packageManager": "pnpm@10.28.2",
+	"description": "A monorepo template for TypeScript projects",
+	"author": "Xat <i@xat.sh>(https://xat.sh)",
+	"license": "MIT",
+	"devDependencies": {
+		"@withxat/eslint-config": "catalog:devtool",
+		"@withxat/tsconfig": "catalog:devtool",
+		"eslint": "catalog:devtool",
+		"jiti": "catalog:devtool",
+		"typescript": "catalog:devtool"
+	}
+}
