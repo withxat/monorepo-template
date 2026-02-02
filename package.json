@@ -10,6 +10,7 @@
 		"@withxat/tsconfig": "catalog:devtool",
 		"eslint": "catalog:devtool",
 		"jiti": "catalog:devtool",
+		"lefthook": "catalog:devtool",
 		"typescript": "catalog:devtool"
 	}
 }
