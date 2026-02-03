@@ -9,6 +9,7 @@ catalogs:
     eslint: ^9.39.2
     jiti: ^2.6.1
     lefthook: ^2.0.16
+    turbo: ^2.8.1
     typescript: ^5.9.3
 
 onlyBuiltDependencies:

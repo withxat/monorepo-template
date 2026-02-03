@@ -5,12 +5,17 @@
 	"description": "A monorepo template for TypeScript projects",
 	"author": "Xat <i@xat.sh>(https://xat.sh)",
 	"license": "MIT",
+	"scripts": {
+		"typecheck": "turbo typecheck",
+		"lint": "turbo lint"
+	},
 	"devDependencies": {
 		"@withxat/eslint-config": "catalog:devtool",
 		"@withxat/tsconfig": "catalog:devtool",
 		"eslint": "catalog:devtool",
 		"jiti": "catalog:devtool",
 		"lefthook": "catalog:devtool",
+		"turbo": "catalog:devtool",
 		"typescript": "catalog:devtool"
 	}
 }
