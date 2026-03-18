@@ -1,16 +1,27 @@
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
 packages:
   - packages/*
   - apps/*
 
 catalogs:
   devtool:
-    '@withxat/eslint-config': ^1.0.3
-    '@withxat/tsconfig': ^1.0.0
-    eslint: ^9.39.2
+    '@withxat/eslint-config': ^1.1.1
+    '@withxat/tsconfig': ^1.0.1
+    eslint: ^10.0.3
     jiti: ^2.6.1
-    lefthook: ^2.0.16
-    turbo: ^2.8.1
+    lefthook: ^2.1.4
+    turbo: ^2.8.17
     typescript: ^5.9.3
+  react:
+    '@types/react': ^19.2.14
+    '@types/react-dom': ^19.2.3
+    react: ^19.2.4
+    react-dom: ^19.2.4
+  tailwind:
+    tailwindcss: 0.0.0-insiders.f302fce
 
-onlyBuiltDependencies:
+allowBuilds:
   - lefthook
