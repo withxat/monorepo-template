@@ -5,13 +5,17 @@ settings:
   excludeLinksFromLockfile: false
 
 catalogs:
+  default:
+    react-day-picker:
+      specifier: ^9.14.0
+      version: 9.14.0
   devtool:
     '@withxat/eslint-config':
       specifier: ^1.1.1
       version: 1.1.1
     '@withxat/tsconfig':
-      specifier: ^1.0.1
-      version: 1.0.1
+      specifier: ^1.0.2
+      version: 1.0.2
     eslint:
       specifier: ^10.0.3
       version: 10.0.3
@@ -50,7 +54,7 @@ importers:
         version: 1.1.1(@typescript-eslint/rule-tester@8.57.1(eslint@10.0.3(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.57.1(typescript@5.9.3))(@typescript-eslint/utils@8.57.1(eslint@10.0.3(jiti@2.6.1))(typescript@5.9.3))(eslint@10.0.3(jiti@2.6.1))(prettier@3.8.1)(typescript@5.9.3)
       '@withxat/tsconfig':
         specifier: catalog:devtool
-        version: 1.0.1
+        version: 1.0.2
       eslint:
         specifier: catalog:devtool
         version: 10.0.3(jiti@2.6.1)
@@ -100,7 +104,7 @@ importers:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       react-day-picker:
-        specifier: ^9.14.0
+        specifier: 'catalog:'
         version: 9.14.0(react@19.2.4)
       react-resizable-panels:
         specifier: ^4.7.3
@@ -132,7 +136,7 @@ importers:
         version: 1.1.1(@typescript-eslint/rule-tester@8.57.1(eslint@10.0.3(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.57.1(typescript@5.9.3))(@typescript-eslint/utils@8.57.1(eslint@10.0.3(jiti@2.6.1))(typescript@5.9.3))(eslint@10.0.3(jiti@2.6.1))(prettier@3.8.1)(typescript@5.9.3)
       '@withxat/tsconfig':
         specifier: catalog:devtool
-        version: 1.0.1
+        version: 1.0.2
       eslint:
         specifier: catalog:devtool
         version: 10.0.3(jiti@2.6.1)
@@ -947,8 +951,8 @@ packages:
     peerDependencies:
       eslint: ^10
 
-  '@withxat/tsconfig@1.0.1':
-    resolution: {integrity: sha512-ZGtZ3ZfZYoEWVYdVEqv7X5PoDKVGbHkx/QI+iGOedVmTEjPE3fuFxNSXkbjY+GmpFAEATDoRsfV8qz+0EhmvmA==}
+  '@withxat/tsconfig@1.0.2':
+    resolution: {integrity: sha512-fBBYCfGrjMtPRbNTh7//74UobeDbUmYJV7t74rlXY1vAUQyUxpSPCwOYaF9T1Va8mQEiDAcGkVSyMVJzX4LQVw==}
 
   '@xml-tools/parser@1.0.11':
     resolution: {integrity: sha512-aKqQ077XnR+oQtHJlrAflaZaL7qZsulWc/i/ZEooar5JiWj1eLt0+Wg28cpa+XLney107wXqneC+oG1IZvxkTA==}
@@ -3237,7 +3241,7 @@ snapshots:
       - typescript
       - vitest
 
-  '@withxat/tsconfig@1.0.1': {}
+  '@withxat/tsconfig@1.0.2': {}
 
   '@xml-tools/parser@1.0.11':
     dependencies:

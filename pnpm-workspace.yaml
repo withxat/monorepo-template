@@ -1,7 +1,6 @@
-catalogMode: strict
 shellEmulator: true
-trustPolicy: no-downgrade
 linkWorkspacePackages: true
+trustPolicy: no-downgrade
 packages:
   - packages/*
   - apps/*
@@ -9,7 +8,7 @@ packages:
 catalogs:
   devtool:
     '@withxat/eslint-config': ^1.1.1
-    '@withxat/tsconfig': ^1.0.1
+    '@withxat/tsconfig': ^1.0.2
     eslint: ^10.0.3
     jiti: ^2.6.1
     lefthook: ^2.1.4

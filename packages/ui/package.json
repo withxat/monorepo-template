@@ -7,13 +7,13 @@
 	"license": "MIT",
 	"exports": {
 		"./*": "./src/components/*.tsx",
-		"./components/*": "./src/components/*.tsx",
-		"./lib/*": "./src/lib/*.ts",
-		"./hooks/*": "./src/hooks/*.ts",
+		"./utils": "./src/lib/index.ts",
+		"./hooks": "./src/hooks/index.ts",
 		"./styles": "./src/styles/globals.css",
 		"./icons": "./src/icons.ts",
 		"./sonner": "./src/sonner.ts"
 	},
+	"types": "./src/types/stub.d.ts",
 	"scripts": {
 		"typecheck": "tsc",
 		"lint": "eslint"

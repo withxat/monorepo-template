@@ -5,8 +5,8 @@
 		"lib": ["ESNext", "DOM", "DOM.Iterable"],
 		"module": "ESNext",
 		"paths": {
-			"ui/lib/*": ["./src/lib/*"],
-			"ui/hooks/*": ["./src/hooks/*"],
+			"ui/utils": ["./src/lib/index.ts"],
+			"ui/hooks": ["./src/hooks/index.ts"],
 			"ui/icons": ["./src/icons.ts"],
 			"ui/sonner": ["./src/sonner.ts"],
 			"ui/*": ["./src/components/*"]
