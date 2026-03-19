@@ -8,6 +8,8 @@
 	"author": "Xat <i@xat.sh>(https://xat.sh)",
 	"license": "MIT",
 	"scripts": {
+		"dev": "turbo dev",
+		"build": "turbo build",
 		"typecheck": "turbo typecheck",
 		"lint": "turbo lint",
 		"lint:fix": "turbo lint -- --fix"
