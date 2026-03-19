@@ -15,7 +15,7 @@
 	},
 	"types": "./src/types/stub.d.ts",
 	"scripts": {
-		"typecheck": "tsc",
+		"typecheck": "tsc --noEmit",
 		"lint": "eslint"
 	},
 	"peerDependencies": {
