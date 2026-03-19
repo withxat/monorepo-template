@@ -1,7 +1,7 @@
+catalogMode: strict
 shellEmulator: true
-
 trustPolicy: no-downgrade
-
+linkWorkspacePackages: true
 packages:
   - packages/*
   - apps/*
@@ -13,7 +13,7 @@ catalogs:
     eslint: ^10.0.3
     jiti: ^2.6.1
     lefthook: ^2.1.4
-    turbo: ^2.8.17
+    turbo: ^2.8.19
     typescript: ^5.9.3
   react:
     '@types/react': ^19.2.14
@@ -21,7 +21,7 @@ catalogs:
     react: ^19.2.4
     react-dom: ^19.2.4
   tailwind:
-    tailwindcss: 0.0.0-insiders.f302fce
+    tailwindcss: ^4.2.2
 
 allowBuilds:
-  - lefthook
+  lefthook: true
