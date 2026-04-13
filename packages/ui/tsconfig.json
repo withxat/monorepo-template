@@ -2,8 +2,7 @@
 	"extends": "@withxat/tsconfig",
 	"compilerOptions": {
 		"jsx": "react-jsx",
-		"lib": ["ESNext", "DOM", "DOM.Iterable"],
-		"module": "ESNext",
+		"lib": ["es2025", "DOM"],
 		"paths": {
 			"ui/utils": ["./src/lib/index.ts"],
 			"ui/hooks": ["./src/hooks/index.ts"],
@@ -11,6 +10,5 @@
 			"ui/sonner": ["./src/sonner.ts"],
 			"ui/*": ["./src/components/*"]
 		}
-	},
-	"include": ["src"]
+	}
 }

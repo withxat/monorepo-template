@@ -1,3 +1,5 @@
 {
-	"extends": "@withxat/tsconfig"
+	"extends": "@withxat/tsconfig",
+	"include": ["**/*"],
+	"exclude": ["apps/**/*", "packages/**/*"]
 }
