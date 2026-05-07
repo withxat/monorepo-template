@@ -153,13 +153,9 @@ Defined in [`turbo.json`](turbo.json):
 3. Add `tsconfig.json` extending `@withxat/tsconfig` and `eslint.config.ts` using `@withxat/eslint-config`.
 4. If the package has `build`, `typecheck`, or `lint` scripts, Turborepo will pick them up automatically.
 
-## License
-
-[MIT](LICENSE)
-
 ## Author
 
-**monorepo-template** © [Xat](https://github.com/withxat), Released under the [MIT](https://github.com/withxat/monorepo-template/blob/master/LICENSE) License.<br>
+**monorepo-template** © [Xat](https://github.com/withxat), Released under the [MIT](https://github.com/withxat/monorepo-template/blob/main/LICENSE) License.<br>
 Authored and maintained by Xat with help from contributors ([list](https://github.com/withxat/monorepo-template/graphs/contributors)).
 
 > [Blog](https://blog.xat.sh) · GitHub [@withxat](https://github.com/withxat) · Telegram [@withxat](https://t.me/withxat) · X [@withxat](https://x.com/withxat) · Email [i@xat.sh](mailto:i@xat.sh)
