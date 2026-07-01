@@ -10,10 +10,12 @@
 		"./utils": "./src/lib/index.ts",
 		"./hooks": "./src/hooks/index.ts",
 		"./styles": "./src/styles/globals.css",
-		"./icons": "./src/icons.ts",
+		"./icons": {
+			"types": "./src/types/icons.d.ts",
+			"default": "./src/icons.ts"
+		},
 		"./sonner": "./src/sonner.ts"
 	},
-	"types": "./src/types/stub.d.ts",
 	"scripts": {
 		"typecheck": "tsc --noEmit",
 		"lint": "eslint"
