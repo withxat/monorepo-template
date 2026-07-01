@@ -1,161 +1,253 @@
 # monorepo-template
 
-A TypeScript monorepo template powered by [pnpm](https://pnpm.io) workspaces, [Turborepo](https://turborepo.dev), and [ESLint](https://eslint.org).
+[English](README.md) | [简体中文](README.zh-CN.md)
+
+A TypeScript monorepo template for applications and shared packages. It uses pnpm workspaces, Turborepo, a shared toolchain catalog, and a ready-to-use React component library.
 
 Maintained by [@withxat](https://github.com/withxat).
 
-## Tech Stack
+## What is included
 
-| Tool                                                 | Purpose                                                                                                                                 |
-| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| [pnpm](https://pnpm.io)                              | Package manager with strict catalog mode                                                                                                |
-| [Turborepo](https://turborepo.dev)                   | Monorepo build system and task runner                                                                                                   |
-| [TypeScript](https://www.typescriptlang.org)         | Type checking via [`@withxat/tsconfig`](https://npmx.dev/@withxat/tsconfig)                                                             |
-| [ESLint](https://eslint.org)                         | Linting **and** formatting via [`@withxat/eslint-config`](https://npmx.dev/@withxat/eslint-config) (Prettier is intentionally disabled) |
-| [Lefthook](https://github.com/evilmartians/lefthook) | Git hooks                                                                                                                               |
+- pnpm 11 workspaces and catalogs for shared dependency versions
+- Turborepo tasks for development, builds, type checking, and linting
+- TypeScript 6 through [`@withxat/tsconfig`](https://npmx.dev/@withxat/tsconfig)
+- ESLint 10 for linting and formatting through [`@withxat/eslint-config`](https://npmx.dev/@withxat/eslint-config)
+- Lefthook checks before every commit
+- A shared React 19 and Tailwind CSS v4 component package
+- The current shadcn/ui `base-nova` component set, built with Base UI primitives
+- [`cnfast`](https://github.com/aidenybai/cnfast) as the `cn` implementation
+- [`foxact`](https://github.com/foxact/foxact) hooks, including the responsive `useIsMobile` helper
+- A suffixed Lucide icon API that exposes names such as `SearchIcon`
+- pnpm supply-chain checks through `trustPolicy: no-downgrade`
 
-## Project Structure
+## Project structure
 
-```
+```text
 monorepo-template/
-├── apps/                    # Application packages
+├── apps/                         # Application workspaces
 ├── packages/
-│   └── ui/                  # Shared React component library
+│   └── ui/                       # Shared React component library
 │       ├── src/
-│       │   ├── components/  # 55 shadcn/ui components
-│       │   ├── hooks/
-│       │   ├── lib/
-│       │   └── styles/
-│       ├── components.json  # shadcn/ui config (base-nova style)
+│       │   ├── components/       # shadcn/ui components
+│       │   ├── hooks/            # Shared React hooks
+│       │   ├── lib/              # Shared utilities
+│       │   ├── styles/           # Tailwind and theme styles
+│       │   └── types/            # Public subpath declarations
+│       ├── components.json       # shadcn/ui base-nova configuration
 │       └── package.json
-├── eslint.config.ts         # Root ESLint flat config
-├── lefthook.yml             # Git hooks config
-├── pnpm-workspace.yaml      # Workspace & catalog definitions
-├── tsconfig.json            # Root TypeScript config
-└── turbo.json               # Turborepo task pipeline
+├── eslint.config.ts              # Root ESLint flat config
+├── lefthook.yml                  # Pre-commit checks
+├── package.json                  # Root scripts and toolchain dependencies
+├── pnpm-workspace.yaml           # Workspace, catalogs, and pnpm policy
+├── tsconfig.json                 # Root TypeScript config
+└── turbo.json                    # Turborepo task definitions
 ```
 
-## Getting Started
+The workspace patterns already include `apps/*` and `packages/*`. Create the `apps` directory when you add the first application.
 
-### Prerequisites
+## Getting started
 
-- [Node.js](https://nodejs.org) (LTS recommended)
-- [pnpm](https://pnpm.io/installation) 10.x
+### Requirements
+
+- A current [Node.js](https://nodejs.org) release
+- [Corepack](https://nodejs.org/api/corepack.html), included with supported Node.js distributions
+- Git
 
 ### Install
 
 ```sh
+corepack enable
 pnpm install
 ```
 
-### Scripts
+The root `packageManager` field pins pnpm 11.9.0, so Corepack uses the same pnpm release for every contributor.
 
-| Command          | Description                    |
-| ---------------- | ------------------------------ |
-| `pnpm typecheck` | Type-check all packages        |
-| `pnpm lint`      | Lint all packages              |
-| `pnpm lint:fix`  | Lint and auto-fix all packages |
+### Commands
 
-All scripts run through Turborepo, so only affected packages are processed and results are cached.
+| Command | Description |
+| --- | --- |
+| `pnpm dev` | Run workspace development tasks |
+| `pnpm build` | Build packages that define a `build` task |
+| `pnpm typecheck` | Type-check all packages |
+| `pnpm lint` | Check all packages with ESLint |
+| `pnpm lint:fix` | Fix lint and formatting issues |
 
-## Packages
+Turborepo runs these commands across the workspace and caches completed tasks.
 
-### `packages/ui`
+## Adding an application
 
-A shared React component library built on [React 19](https://react.dev), [Tailwind CSS v4](https://tailwindcss.com), and [shadcn/ui](https://ui.shadcn.com) (base-nova style). It ships 55 components including accordion, button, calendar, chart, command palette, dialog, drawer, sidebar, and more.
-
-````
-The `tooltip` component has been added. Remember to wrap your app with the `TooltipProvider` component.
-
-```tsx title="app/layout.tsx"
-import { TooltipProvider } from "@/components/ui/tooltip"
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>
-        <TooltipProvider>{children}</TooltipProvider>
-      </body>
-    </html>
-  )
-}
-```
-````
-
-**Subpath exports:**
-
-```jsonc
-{
-	// e.g. import { Button } from "ui/button"
-	"./*": "./src/components/*.tsx",
-
-	// e.g. import { cn } from "ui/utils"
-	"./utils": "./src/lib/index.ts",
-
-	// e.g. import { useToggle } from "ui/hooks"
-	"./hooks": "./src/hooks/index.ts",
-
-	// e.g. import "ui/styles"
-	"./styles": "./src/styles/globals.css",
-
-	// e.g. import { ChevronDownIcon } from "ui/icons"
-	"./icons": "./src/icons.ts",
-
-	// e.g. import { toast } from "ui/sonner"
-	"./sonner": "./src/sonner.ts"
-}
-```
-
-**Peer dependencies:** `react`, `react-dom`, `tailwindcss` (versions managed by pnpm catalogs).
-
-## Dependency Management
-
-All dependency versions are centralized in [`pnpm-workspace.yaml`](pnpm-workspace.yaml) using **strict catalog mode**. Packages reference catalogs instead of hardcoded versions, keeping everything in sync:
-
-| Catalog    | Contents                                                                                           |
-| ---------- | -------------------------------------------------------------------------------------------------- |
-| `devtool`  | `eslint`, `typescript`, `turbo`, `lefthook`, `jiti`, `@withxat/eslint-config`, `@withxat/tsconfig` |
-| `react`    | `react`, `react-dom`, `@types/react`, `@types/react-dom`                                           |
-| `tailwind` | `tailwindcss`                                                                                      |
-
-Usage in any `package.json`:
+Create a directory under `apps/` with its own `package.json`, TypeScript config, and ESLint config. Reference the shared UI package with the workspace protocol and use catalogs for shared versions:
 
 ```json
 {
+	"name": "web",
+	"private": true,
 	"dependencies": {
-		"react": "catalog:react"
+		"react": "catalog:react",
+		"react-dom": "catalog:react",
+		"ui": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/react": "catalog:react",
+		"@types/react-dom": "catalog:react",
+		"typescript": "catalog:devtool"
 	}
 }
 ```
 
-## Turborepo Tasks
+Extend the shared TypeScript and ESLint packages in the application:
 
-Defined in [`turbo.json`](turbo.json):
+```jsonc
+// apps/web/tsconfig.json
+{
+	"extends": "@withxat/tsconfig",
+	"compilerOptions": {
+		"jsx": "react-jsx"
+	},
+	"include": ["src"]
+}
+```
 
-| Task        | Dependencies | Caching   | Notes                            |
-| ----------- | ------------ | --------- | -------------------------------- |
-| `build`     | `^build`     | `dist/**` | Builds depend on upstream builds |
-| `typecheck` | `^typecheck` | Cached    |                                  |
-| `lint`      | `^lint`      | Cached    |                                  |
-| `dev`       | None         | No cache  | Persistent (long-running)        |
+```ts
+// apps/web/eslint.config.ts
+import { xat } from '@withxat/eslint-config'
 
-## Git Hooks
+export default xat()
+```
 
-[Lefthook](https://github.com/evilmartians/lefthook) runs two jobs in parallel on **pre-commit**:
+Add `dev`, `build`, `typecheck`, and `lint` scripts as needed. Turborepo picks up scripts whose names match tasks in `turbo.json`.
 
-1. **lint & format** -- runs `pnpm lint:fix` on staged files and re-stages fixes automatically (`stage_fixed: true`)
-2. **typecheck** -- runs `pnpm typecheck` on changed TypeScript/JavaScript files
+## Shared UI package
 
-## Adding New Packages or Apps
+`packages/ui` contains the shared component source. Applications consume each component through a subpath export:
 
-1. Create a directory under `apps/` or `packages/`.
-2. Add a `package.json` with the package name. Use `catalog:` references for shared dependencies.
-3. Add `tsconfig.json` extending `@withxat/tsconfig` and `eslint.config.ts` using `@withxat/eslint-config`.
-4. If the package has `build`, `typecheck`, or `lint` scripts, Turborepo will pick them up automatically.
+```tsx
+import { Button } from 'ui/button'
+import { Card, CardContent, CardHeader } from 'ui/card'
+import { SearchIcon } from 'ui/icons'
+import { cn } from 'ui/utils'
+
+export function SearchCard() {
+	return (
+		<Card className={cn('max-w-md')}>
+			<CardHeader>Search</CardHeader>
+			<CardContent>
+				<Button>
+					<SearchIcon />
+					Open search
+				</Button>
+			</CardContent>
+		</Card>
+	)
+}
+```
+
+Import the shared stylesheet once from the application entry point:
+
+```ts
+import 'ui/styles'
+```
+
+### Tooltip provider
+
+Applications that use tooltips should mount `TooltipProvider` near the root:
+
+```tsx
+import type { ReactNode } from 'react'
+
+import { TooltipProvider } from 'ui/tooltip'
+
+export function Providers({ children }: { children: ReactNode }) {
+	return <TooltipProvider>{children}</TooltipProvider>
+}
+```
+
+### Utilities and hooks
+
+`ui/utils` exports `cn` from cnfast. It has the same call shape as the usual `clsx` and `tailwind-merge` helper:
+
+```ts
+import { cn } from 'ui/utils'
+
+const className = cn('px-2 py-1', active && 'bg-primary')
+```
+
+`ui/hooks` currently exports `useIsMobile`, which uses foxact's `useMediaQuery` with an SSR fallback of `false`:
+
+```tsx
+import { useIsMobile } from 'ui/hooks'
+
+const isMobile = useIsMobile()
+```
+
+### Suffixed icon names
+
+Import Lucide icons from `ui/icons`. Its public type declaration only exposes suffixed names:
+
+```tsx
+import { SearchIcon } from 'ui/icons' // valid
+import { Search } from 'ui/icons' // TypeScript error
+```
+
+This restriction applies to `ui/icons`. An application that imports `lucide-react` directly bypasses it, so keep Lucide imports behind the shared package if you want one naming convention across the monorepo.
+
+### Public exports
+
+| Import | Provides |
+| --- | --- |
+| `ui/<component>` | A component from `src/components` |
+| `ui/utils` | The cnfast `cn` helper |
+| `ui/hooks` | Shared React hooks |
+| `ui/styles` | Tailwind and theme styles |
+| `ui/icons` | Lucide icons with suffixed public types |
+| `ui/sonner` | Sonner's `toast` API |
+
+React, React DOM, and Tailwind CSS are peer dependencies. Their versions come from the workspace catalogs.
+
+### Updating shadcn/ui
+
+Run the shadcn CLI from the repository root. The package's `components.json` keeps generated files and imports aligned with the workspace exports.
+
+```sh
+npx shadcn@latest add button -c packages/ui --overwrite
+npx shadcn@latest add --all -c packages/ui --overwrite
+```
+
+After generation, run lint, type checking, and any application tests. Generated code may need small adjustments when its import paths or SSR behavior differ from this package's public API.
+
+## Dependency management
+
+Shared versions live in `pnpm-workspace.yaml`:
+
+| Catalog | Packages |
+| --- | --- |
+| `devtool` | ESLint, TypeScript, Turborepo, Lefthook, Jiti, and shared configs |
+| `react` | React, React DOM, and their type packages |
+| `tailwind` | Tailwind CSS |
+
+Use catalog references instead of repeating versions:
+
+```json
+{
+	"devDependencies": {
+		"typescript": "catalog:devtool"
+	}
+}
+```
+
+`trustPolicy: no-downgrade` rejects packages whose newer release has weaker trust evidence than an earlier release. Review the package and its provenance before adding a temporary exception to `minimumReleaseAgeExclude`.
+
+## Git hooks
+
+Lefthook runs two pre-commit jobs in parallel:
+
+1. `pnpm lint:fix` checks formatting and stages safe fixes.
+2. `pnpm typecheck` runs when staged JavaScript or TypeScript files change.
+
+Commits use the [Conventional Commits](https://www.conventionalcommits.org) format.
 
 ## Author
 
-**monorepo-template** © [Xat](https://github.com/withxat), Released under the [MIT](https://github.com/withxat/monorepo-template/blob/main/LICENSE) License.<br>
-Authored and maintained by Xat with help from contributors ([list](https://github.com/withxat/monorepo-template/graphs/contributors)).
+**monorepo-template** © [Xat](https://github.com/withxat). Authored and maintained by Xat with help from [contributors](https://github.com/withxat/monorepo-template/graphs/contributors).
 
-> [Blog](https://blog.xat.sh) · GitHub [@withxat](https://github.com/withxat) · Telegram [@withxat](https://t.me/withxat) · X [@withxat](https://x.com/withxat) · Email [i@xat.sh](mailto:i@xat.sh)
+[Blog](https://blog.xat.sh) · GitHub [@withxat](https://github.com/withxat) · Telegram [@withxat](https://t.me/withxat) · X [@withxat](https://x.com/withxat) · [i@xat.sh](mailto:i@xat.sh)
