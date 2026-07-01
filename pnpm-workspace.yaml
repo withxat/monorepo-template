@@ -6,19 +6,29 @@ packages:
   - apps/*
 catalogs:
   devtool:
-    '@withxat/eslint-config': ^1.1.2
+    '@withxat/eslint-config': ^1.1.5
     '@withxat/tsconfig': ^1.0.4
-    eslint: ^10.2.0
-    jiti: ^2.6.1
-    lefthook: ^2.1.5
-    turbo: ^2.9.6
-    typescript: ^6.0.2
+    eslint: ^10.6.0
+    jiti: ^2.7.0
+    lefthook: ^2.1.9
+    turbo: ^2.10.2
+    typescript: ^6.0.3
   react:
-    '@types/react': ^19.2.14
+    '@types/react': ^19.2.17
     '@types/react-dom': ^19.2.3
-    react: ^19.2.4
-    react-dom: ^19.2.4
+    react: ^19.2.7
+    react-dom: ^19.2.7
   tailwind:
-    tailwindcss: ^4.2.2
+    tailwindcss: ^4.3.2
 allowBuilds:
   lefthook: true
+minimumReleaseAgeExclude:
+  - '@turbo/darwin-64@2.10.2'
+  - '@turbo/darwin-arm64@2.10.2'
+  - '@turbo/linux-64@2.10.2'
+  - '@turbo/linux-arm64@2.10.2'
+  - '@turbo/windows-64@2.10.2'
+  - '@turbo/windows-arm64@2.10.2'
+  - '@withxat/eslint-config@1.1.5'
+  - recharts@3.9.1
+  - turbo@2.10.2
