@@ -1,9 +1,19 @@
-import { useMediaQuery } from 'foxact/use-media-query'
+import * as React from 'react'
 
 const MOBILE_BREAKPOINT = 768
+const MOBILE_QUERY = `(max-width: ${MOBILE_BREAKPOINT - 1}px)`
 
-export function useIsMobile({ breakpoint = MOBILE_BREAKPOINT } = {}) {
-	const isMobile = useMediaQuery(`(max-width: ${breakpoint - 1}px)`, false)
+function subscribe(onStoreChange: () => void) {
+	const mediaQueryList = window.matchMedia(MOBILE_QUERY)
+	mediaQueryList.addEventListener('change', onStoreChange)
 
-	return isMobile
+	return () => mediaQueryList.removeEventListener('change', onStoreChange)
+}
+
+function getSnapshot() {
+	return window.matchMedia(MOBILE_QUERY).matches
+}
+
+export function useIsMobile() {
+	return React.useSyncExternalStore(subscribe, getSnapshot, () => false)
 }
