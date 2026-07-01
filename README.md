@@ -16,7 +16,7 @@ Maintained by [@withxat](https://github.com/withxat).
 - A shared React 19 and Tailwind CSS v4 component package
 - The current shadcn/ui `base-nova` component set, built with Base UI primitives
 - [`cnfast`](https://github.com/aidenybai/cnfast) as the `cn` implementation
-- [`foxact`](https://github.com/foxact/foxact) hooks, including the responsive `useIsMobile` helper
+- [`foxact`](https://github.com/sukkaw/foxact) hooks, including the responsive `useIsMobile` helper
 - A suffixed Lucide icon API that exposes names such as `SearchIcon`
 - pnpm supply-chain checks through `trustPolicy: no-downgrade`
 

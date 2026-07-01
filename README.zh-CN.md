@@ -16,7 +16,7 @@
 - 一个基于 React 19 和 Tailwind CSS v4 的共享组件包
 - 当前完整的 shadcn/ui `base-nova` 组件集，底层使用 Base UI 原语组件
 - 使用 [`cnfast`](https://github.com/aidenybai/cnfast) 实现 `cn`
-- 使用 [`foxact`](https://github.com/foxact/foxact) Hook，包括响应式判断 `useIsMobile`
+- 使用 [`foxact`](https://github.com/sukkaw/foxact) Hook，包括响应式判断 `useIsMobile`
 - 只公开 `SearchIcon` 这类带 `Icon` 后缀的 Lucide 图标类型
 - 通过 `trustPolicy: no-downgrade` 检查 pnpm 依赖的供应链风险
 
